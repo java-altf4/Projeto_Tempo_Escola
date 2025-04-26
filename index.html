@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,52 +8,37 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="header">
             <input type="text" id="cityInput" placeholder="Digite a cidade..." />
             <button onclick="buscarTempo()">Buscar</button>
-            <button onclick="usarLocalizacao()">Usar Localização Atual</button>
+            <button onclick="usarLocalizacao()">📍 Usar Localização Atual</button>
         </header>
-        
-        <section class="weather-main">
+
+        <section class="current-weather">
             <h1 id="cityName">Cidade</h1>
             <h2 id="temperature">--°C</h2>
             <p id="description">Descrição</p>
             <small id="feels_like">Sensação: --°C</small>
+
+            <div class="details">
+                <div>Vento: <span id="wind">-- m/s</span></div>
+                <div>Humidade: <span id="humidity">--%</span></div>
+                <div>Pressão: <span id="pressure">-- hPa</span></div>
+                <div>Visibilidade: <span id="visibility">-- km</span></div>
+            </div>
         </section>
 
-        <section class="weather-details">
-            <div>Vento: <span id="wind">-- m/s</span></div>
-            <div>Humidade: <span id="humidity">--%</span></div>
-            <div>Pressão: <span id="pressure">-- hPa</span></div>
-            <div>Visibilidade: <span id="visibility">-- km</span></div>
+        <section class="forecast-hourly">
+            <h3>Previsão por Horas</h3>
+            <div id="hourlyForecast" class="hours"></div>
+        </section>
+
+        <section class="forecast-daily">
+            <h2>Previsão Semanal</h2>
+            <div id="dailyForecast"></div>
         </section>
     </div>
 
     <script src="script.js"></script>
-
-    <script>
-    // 🚀 Captura de dados de acesso automática
-    function capturarDadosAcesso() {
-        const dados = {
-    navegador: navigator.userAgent,
-    idioma: navigator.language,
-    plataforma: navigator.platform,
-    resolucaoTela: `${screen.width}x${screen.height}`,
-    dataHoraAcesso: new Date().toISOString() // <- aqui já salva a hora de acesso
-};
-
-
-        let acessos = JSON.parse(localStorage.getItem('dadosAcesso')) || [];
-        acessos.push(dados);
-        localStorage.setItem('dadosAcesso', JSON.stringify(acessos, null, 2));
-
-        console.log('📦 Acesso registrado:');
-        console.table(dados);
-    }
-
-    // Quando o site carregar, registra o acesso
-    window.onload = capturarDadosAcesso;
-    </script>
-
 </body>
 </html>
