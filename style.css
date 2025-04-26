@@ -1,69 +1,249 @@
+/* style.css */
+
+/* --- Configurações Gerais --- */
 body {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    background-color: #f5f7fa;
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #111;
-    color: #fff;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .container {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 600px;
-    padding: 20px;
-    background: #222;
-    border-radius: 15px;
-    text-align: center;
+    max-width: 900px;
+    padding: 30px;
+    animation: fadeInContainer 1s ease-out;
 }
 
-header {
-    margin-bottom: 20px;
+/* Fade-in da página */
+@keyframes fadeInContainer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-header input {
-    padding: 10px;
-    width: 70%;
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.header input {
+    padding: 12px 20px;
+    border: 2px solid #ddd;
     border-radius: 10px;
-    border: none;
+    width: 80%;
+    max-width: 300px;
     outline: none;
-    margin-bottom: 10px;
+    transition: 0.3s;
+    font-size: 1rem;
 }
 
-header button {
-    padding: 10px 20px;
+.header input:focus {
+    border-color: #ff8c42;
+}
+
+/* Botões com animação */
+.header button {
+    padding: 12px 24px;
+    background-color: #ff8c42;
     border: none;
-    background-color: #ff4500;
     color: white;
+    font-size: 1rem;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
 }
 
-.weather-main h1 {
-    margin: 10px 0;
+.header button:hover {
+    background-color: #e67628;
+    transform: translateY(-3px) scale(1.05);
 }
 
-.weather-main h2 {
-    font-size: 4em;
-    margin: 10px 0;
+/* --- Seção Clima Atual --- */
+.current-weather {
+    text-align: center;
+    margin-bottom: 35px;
+    animation: fadeInSection 1.5s ease;
 }
 
-.weather-main p {
-    font-size: 1.2em;
+@keyframes fadeInSection {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.current-weather h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.current-weather h2 {
+    font-size: 3.5rem;
+    margin: 0;
+    color: #ff8c42;
+}
+
+.current-weather p {
+    font-size: 1.1rem;
+    color: #666;
     margin: 5px 0;
 }
 
-.weather-main small {
-    font-size: 0.9em;
-    color: #ccc;
+.current-weather small {
+    display: block;
+    margin-top: 8px;
+    color: #888;
+    font-size: 0.9rem;
 }
 
-.weather-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.details {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
-    font-size: 1.1em;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.details div {
+    background: #fafafa;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    min-width: 120px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #555;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Cartões pulando de leve no hover */
+.details div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Previsão por Hora --- */
+.forecast-hourly {
+    margin-bottom: 30px;
+}
+
+.forecast-hourly h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.hours {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #ff8c42 #f5f7fa;
+}
+
+.hours::-webkit-scrollbar {
+    height: 6px;
+}
+
+.hours::-webkit-scrollbar-thumb {
+    background: #ff8c42;
+    border-radius: 6px;
+}
+
+.hora {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 80px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    scroll-snap-align: start;
+    transition: transform 0.3s;
+}
+
+.hora:hover {
+    transform: scale(1.1);
+}
+
+.hora p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.hora img {
+    width: 50px;
+}
+
+/* --- Previsão Semanal --- */
+#dailyForecast {
+    margin-top: 30px;
+    animation: fadeInSection 1.5s ease;
+}
+
+.tabela-previsao {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-previsao th, .tabela-previsao td {
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-previsao th {
+    background-color: #ff8c42;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.tabela-previsao td {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.tabela-previsao tr:hover {
+    background-color: #f9f9f9;
+}
+
+.tabela-previsao img {
+    width: 40px;
+}
+.icon-clear-day:hover {
+    animation: rotateSun 4s linear infinite;
+}
+
+@keyframes rotateSun {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.icon-clouds:hover {
+    animation: floatCloud 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatCloud {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-10px); }
+}
+.icon-rain:hover {
+    animation: rainFall 0.5s ease-in-out infinite;
+}
+
+@keyframes rainFall {
+    from { transform: translateY(0px); opacity: 1; }
+    to { transform: translateY(10px); opacity: 0.3; }
 }
