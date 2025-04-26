@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto_Tempo_Escola</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <input type="text" id="cityInput" placeholder="Digite a cidade..." />
+            <button onclick="buscarTempo()">Buscar</button>
+        </header>
+        
+        <section class="weather-main">
+            <h1 id="cityName">Cidade</h1>
+            <h2 id="temperature">--°C</h2>
+            <p id="description">Descrição</p>
+            <small id="feels_like">Sensação: --°C</small>
+        </section>
+
+        <section class="weather-details">
+            <div>Vento: <span id="wind">-- m/s</span></div>
+            <div>Humidade: <span id="humidity">--%</span></div>
+            <div>Pressão: <span id="pressure">-- hPa</span></div>
+            <div>Visibilidade: <span id="visibility">-- km</span></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+    // 🚀 Captura de dados de acesso automática
+    function capturarDadosAcesso() {
+        const dados = {
+    navegador: navigator.userAgent,
+    idioma: navigator.language,
+    plataforma: navigator.platform,
+    resolucaoTela: `${screen.width}x${screen.height}`,
+    dataHoraAcesso: new Date().toISOString() // <- aqui já salva a hora de acesso
+};
+
+
+        let acessos = JSON.parse(localStorage.getItem('dadosAcesso')) || [];
+        acessos.push(dados);
+        localStorage.setItem('dadosAcesso', JSON.stringify(acessos, null, 2));
+
+        console.log('📦 Acesso registrado:');
+        console.table(dados);
+    }
+
+    // Quando o site carregar, registra o acesso
+    window.onload = capturarDadosAcesso;
+    </script>
+
+</body>
+</html>
